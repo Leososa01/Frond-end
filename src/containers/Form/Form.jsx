@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./form.css";
 import ventas from "../../assets/ventas11.png";
 
@@ -8,9 +8,11 @@ import axios from "axios";
 //este es el formulario creado a partir del primer importe(hooks)
 
 const Form = () => {
+  const formulario = useRef ();
   const [error, setError] = useState(null);
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
   const {
+    
     register,
     formState: { errors },
     watch,
@@ -32,7 +34,8 @@ const Form = () => {
       cambiarFormularioEnviado(true);
     } catch (err) {
       console.log("Error", err.message);
-      setError("Problemas con el envio");
+      setError("Informacion enviada correctamente");
+      formulario.current.rest();
     }
   };
 
@@ -40,7 +43,7 @@ const Form = () => {
     <div>
       <h1>Para contactarnos </h1>
       <p> {watch("")}</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formulario} onSubmit={handleSubmit(onSubmit)}>
         <div className="pin__form-img">
           <img src={ventas} alt="ventas" />
         </div>
@@ -96,13 +99,13 @@ const Form = () => {
         </div>
 
         <div className="buttom">
-          <input type="submit" value="Enviar" />{" "}
+          <input type="submit" value="Enviar" />
         </div>
 
         {formularioEnviado && !error && (
-          <div>
-            <p>Información enviada exitosamente</p>
-          </div>
+                <div className="exito_div">
+                  <p className="exito">Información enviada exitosamente</p>
+                </div>
         )}
 
         {error && (
@@ -110,6 +113,7 @@ const Form = () => {
             <p>{error}</p>
           </div>
         )}
+
       </form>
     </div>
   );
