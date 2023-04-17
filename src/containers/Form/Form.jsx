@@ -55,7 +55,7 @@ const Form = () => {
             type="password"
             {...register("contrasena_confirmation", {
               required: true,
-              maxLength: [4,8],
+              maxLength: 8,
             })} />
           {errors.contrasena_confirmation?.type === 'password'&& <p>El campo Nombre es requerido</p>}
           {errors.contrasena_confirmation?.type === 'maxLength'&& <p>Superaste el maximo de caracteres</p>}
@@ -67,7 +67,7 @@ const Form = () => {
             type="password"
             {...register("contrasena", {
               required: true,
-              maxLength: [4,8],
+              maxLength: 8,
             })}
           />
           {errors.contrasena?.type === 'pasword'&& <p>El campo Nombre es requerido</p>}
@@ -79,7 +79,7 @@ const Form = () => {
             type="number"
             {...register("edad", {
               required: true,
-              maxLength: [1,2],
+              maxLength: 2,
             })}
           />
           {errors.edad?.type === 'maxLength'&& <p>Superaste el maximo de caracteres</p>}
