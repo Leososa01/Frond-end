@@ -34,8 +34,9 @@ const Form = () => {
       cambiarFormularioEnviado(true);
     } catch (err) {
       console.log("Error", err.message);
+      // formulario.current.rest();     revisar para que se resetee
       setError("Informacion enviada correctamente");
-      formulario.current.rest();
+      
     }
   };
 
@@ -102,17 +103,20 @@ const Form = () => {
           <input type="submit" value="Enviar" />
         </div>
 
-        {formularioEnviado && !error && (
-                <div className="exito_div">
+        {formularioEnviado && !error && 
+          (
+                <div className="exito_div" >
                   <p className="exito">Información enviada exitosamente</p>
                 </div>
-        )}
+          )
+        }
 
         {error && (
           <div>
             <p>{error}</p>
           </div>
-        )}
+                  )
+        }
 
       </form>
     </div>
